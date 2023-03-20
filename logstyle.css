@@ -1,0 +1,38 @@
+*
+{
+    font-family: 'Arial', sans-serif;
+}
+
+body
+{
+    color: black;
+    background-color: black;
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+#text
+{
+    height: 25px;
+    border-radius: 5px;
+    padding: 4px;
+    border: solid thin #aaa;
+    width: 100%;
+}
+
+#button
+{
+    padding: 10px;
+    width: 100px;
+    color: black;
+    background-color: goldenrod;
+    border: none;
+}
+
+#box
+{
+    background-color: wheat;
+    margin: auto;
+    width: 474px;
+    padding: 20px;
+}
