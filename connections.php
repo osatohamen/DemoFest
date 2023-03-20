@@ -5,7 +5,7 @@ $dbu = "root";
 $dbp = "";
 $dbn = "log";
 
-if(!$cxn = mysqli_connect($dbh, $dbu, $dbp, $dbn))
+if (!$cxn = mysqli_connect($dbh, $dbu, $dbp, $dbn))
 {
     die("ERROR!  FAILED TO ESTABLISH CONNECTION!");
 }
