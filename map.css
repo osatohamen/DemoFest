@@ -3,7 +3,7 @@ body{
     padding: 0;
     width: 200px;
     height: 100vh;
-    background-image: url('/aeaea.jpg');
+    background-image: url('aeaea.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
