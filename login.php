@@ -5,6 +5,13 @@ session_start();
 include("connections.php");
 include("functions.php");
 
+$u_dat = check_log($cxn);
+if ($u_dat)//If logged in, then redirect to home page
+{
+    header("Location: uoitmap.php");
+    die;
+}
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $ema = $_POST['email'];
@@ -12,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
     if(!empty($ema) && !empty($passw))
     {
-        $q = "select * from basic where EM = '$ema' limit 1";
+        $q = "select * from user where EM = '$ema' limit 1";
 
         $res = mysqli_query($cxn, $q);
 
@@ -26,13 +33,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 {
                     $_SESSION['ID'] = $u_dat['ID'];
 
-                    header("Location: index.php");
+                    header("Location: uoitmap.php");
                     die;
                 }
             }
         }
     }
-    
+
     echo '<script>alert("INVALID!  PLEASE ENTER VALID INFORMATION...")</script>';
 }
 ?>
@@ -49,17 +56,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <body>
         <div id="box">
             <form method="POST" name="login">
-                <div style="font-size: 20px; margin: 10px; color: black; text-align: center; background-color: goldenrod;">Sign In</div>
-                <label>E-Mail:  
+                <div style="font-size: 20px; margin: 10px; color: black; text-align: center; background-color: goldenrod;">LogIn</div>
+                <label>E-Mail/Username:  
                 <input id="text" type="email" name="email" placeholder="Input email address...">
                 </label><br><br>
-                <label>Password:  
+                <label>Password:
                 <input id="text" type="password" name="pass" placeholder="Input password...">
                 </label><br><br>
                 <input id="button" type="submit" value="Sign In" style="width: 100%;">
 
                 <a href="newuser.php">Sign Up</a>
-                <a href="index.php">Home Page</a>
+                <a href="uoitmap.php">Home Page</a>
             </form>
         </div>
     </body>

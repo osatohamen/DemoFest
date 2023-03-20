@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+include("connections.php");
+include("functions.php");
+
+$u_dat = check_log($cxn);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +32,12 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
- <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="3e8bf5f1-6d81-46d0-ad8e-aeaa9ab9570a";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+  
+  <!--- LiveChat [ONLY IF LOGGED IN] --->
+  <?php
+  if ($u_dat)
+  {echo '<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="3e8bf5f1-6d81-46d0-ad8e-aeaa9ab9570a";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>';}
+  ?>
  
 </head>
 
@@ -31,7 +47,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="islandmap.html" class="logo"><img src="assets/img/circe.jpg" alt="" class="img-fluid"></a></h1>
+      <h1 class="logo"><a href="index.html" class="logo"><img src="assets/img/circe.jpg" alt="" class="img-fluid"></a></h1>
       <!-- Uncomment below if we'd prefer to use an image logo -->
       <!-- <a href="islandmap.html">Circe's Wellness Campus</a>-->
 
@@ -753,7 +769,16 @@
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                           </div>
                           <div class="col-md-12 text-center">
-                            <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                            <?php
+                            if ($u_dat)
+                            {
+                                echo '<button type="submit" class="button button-a button-big button-rouded">Send Message</button>';
+                            }
+                            else
+                            {
+                                echo '<button type="submit" class="button button-a button-big button-rouded"><a href="login.php" style="color:white;">Please Login to Continue</a></button>';
+                            }
+                            ?>
                           </div>
                         </div>
                       </form>

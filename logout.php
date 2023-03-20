@@ -7,5 +7,5 @@ if (isset($_SESSION['ID']))
     unset($_SESSION['ID']);
 }
 
-header("Location: index.php");
+header("Location: uoitmap.php");
 die;

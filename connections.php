@@ -3,7 +3,7 @@
 $dbh = "localhost";
 $dbu = "root";
 $dbp = "";
-$dbn = "log";
+$dbn = "circe";
 
 if (!$cxn = mysqli_connect($dbh, $dbu, $dbp, $dbn))
 {

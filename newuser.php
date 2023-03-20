@@ -5,23 +5,28 @@ session_start();
 include("connections.php");
 include("functions.php");
 
+$u_dat = check_log($cxn);
+if ($u_dat)//If logged in, then redirect to home page
+{
+    header("Location: uoitmap.php");
+    die;
+}
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $f_name = $_POST['fname'];
     $l_name = $_POST['lname'];
-    $ema = $_POST['email'];
+    $u_name = $_POST['uname'];
     $passw = $_POST['pass'];
-    $cnm = $_POST['cnum'];
-    $cnam = $_POST['cname'];
-    $cxp = $_POST['cexp'];
-    $cvvn = $_POST['cvv'];
+    $ema = $_POST['email'];
+    $bio = $_POST['biog'];
 
-    if (!empty($passw) && !empty($f_name) && !empty($l_name) && !empty($ema) && !empty($cnm) && !empty($cnam) && !empty($cxp) && !empty($cvvn))
+    if (!empty($passw) && !empty($f_name) && !empty($l_name) && !empty($ema))
     {
-        $q = "insert into basic (FN, LN, PW, EM, CNum, CName, CExp, CVV) values ('$f_name', '$l_name', '$passw', '$ema', '$cnm', '$cnam', '$cxp', '$cvvn')";
+        $q = "insert into user (FN, LN, UN, PW, EM, Bio) values ('$f_name', '$l_name', '$u_name', '$passw', '$ema', '$bio')";
 
         mysqli_query($cxn, $q);
-
+        
         header("Location: login.php");
         die;
     }
@@ -49,29 +54,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 <label>Last Name:  
                 <input id="text" type="text" name="lname" placeholder="Input last name...">
                 </label><br><br>
+                <label>Username:  
+                <input id="text" type="text" name="uname" placeholder="Input username [Leave blank for 'Anonymous']...">
+                </label><br><br>
                 <label>E-Mail:  
                 <input id="text" type="email" name="email" placeholder="Input e-mail...">
                 </label><br><br>
                 <label>Password:  
                 <input id="text" type="password" name="pass" placeholder="Input password...">
                 </label><br><br>
-                <label>Credit Card #:
-                <input id="text" type="number" name="cnum" min="0000000000000001"  max="9999999999999999" placeholder="Input credit card #...">
-                </label><br><br>
-                <label>Card Name:  
-                <input id="text" type="text" name="cname" placeholder="Input full name...">
-                </label><br><br>
-                <label>Expiry Date:
-                <input id="text" type="number" name="cexp" min="012022" max="129999" placeholder="mmyyyy">
-                </label><br><br>
-                <label>CVV:  
-                <input id="text" type="number" name="cvv" min="000" max="999" placeholder="Input CVV (###)...">
+                <label>Profile Bio:
+                <input id="text" type="text" name="biog" placeholder="Why don't you share a bit about yourself? [OPTIONAL]...">
                 </label><br><br>
 
                 <input id="button" type="submit" value="Sign Up" style="width: 100%;">
 
-                <a href="login.php">Sign In</a>
-                <a href="index.php">Home Page</a>
+                <a href="login.php">LogIn</a>
+                <a href="uoitmap.php">Home Page</a>
             </form>
         </div>
     </body>
