@@ -1,4 +1,5 @@
 <?php
+
 $dbh = "localhost";
 $dbu = "root";
 $dbp = "";
