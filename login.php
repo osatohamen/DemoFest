@@ -56,11 +56,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <body>
         <div id="box">
             <form method="POST" name="login">
-                <div style="font-size: 20px; margin: 10px; color: black; text-align: center; background-color: goldenrod;">LogIn</div>
-                <label>E-Mail/Username:  
+                <div style="font-size: 20px; margin: 10px; color: black; text-align: center; background-color: white;">LogIn</div>
+                <label>Student E-Mail:  
                 <input id="text" type="email" name="email" placeholder="Input email address...">
                 </label><br><br>
-                <label>Password:
+                <label>Network Password: 
                 <input id="text" type="password" name="pass" placeholder="Input password...">
                 </label><br><br>
                 <input id="button" type="submit" value="Sign In" style="width: 100%;">
