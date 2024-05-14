@@ -33,11 +33,8 @@ $u_dat = check_log($cxn);
   <!-- Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   
-  <!--- LiveChat [ONLY IF LOGGED IN] --->
-  <?php
-  if ($u_dat)
-  {echo '<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="3e8bf5f1-6d81-46d0-ad8e-aeaa9ab9570a";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>';}
-  ?>
+  <!--- LiveChat --->
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="3e8bf5f1-6d81-46d0-ad8e-aeaa9ab9570a";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>';}
  
 </head>
 
@@ -87,7 +84,19 @@ $u_dat = check_log($cxn);
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="#login">Login</a></li>
+          <?php
+          if ($u_dat)
+          {
+            echo '<li><a class="nav-link scrollto" href="moduser.php">Account Details</a></li>';
+            echo '<li><a class="nav-link scrollto" href="logout.php" style="margin: auto;">Sign Out of ' .$u_dat['UN'] . '\'s Account</a</li>';
+          }
+          else
+          {
+            echo '<li><a href="login.php" class="nav-link scrollto">  LogIn</a></li>';
+            echo '<li><a href="newuser.php" class="nav-link scrollto">  Create Account</a></li>';
+          }
+          ?> 
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -314,7 +323,7 @@ $u_dat = check_log($cxn);
           </div>
           <div class="col-md-4">
             <div class="work-box">
-              <a href="assets/img/solidworkscertification.png" data-gallery="portfolioGallery" class="portfolio-lightbox">
+              <a href="/assests/img/solidworkscertifications.png" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
                   <img src="assets/img/solidworkscertification.png" alt="" class="img-fluid">
                 </div>
